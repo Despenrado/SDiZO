@@ -12,12 +12,15 @@ public:
 	int popBack();
 	int popFront();
 	int del(int index);
+	int* get(int index);
 	static void printToConsole(MyArrayList* tmp);
+	int getLength();
+	int getSize();
 
 	~MyArrayList();
 
 private:
 	int size;
-	int lenght;
+	int length;
 	int* array;
 };

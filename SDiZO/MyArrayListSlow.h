@@ -13,7 +13,9 @@ public:
 	int popBack();
 	int popFront();
 	int del(int index);
+	int* get(int index);
 	static void printToConsole(MyArrayListSlow *tmp);
+	int getSize();
 
 	~MyArrayListSlow();
 

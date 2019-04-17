@@ -1,10 +1,9 @@
 #include <iostream>
 
-
-class MyArrayListSlow
+class MyArrayList
 {
 public:
-	MyArrayListSlow();
+	MyArrayList();
 
 	void pushBack(int val);
 	void pushFront(int val);
@@ -13,11 +12,12 @@ public:
 	int popBack();
 	int popFront();
 	int del(int index);
-	static void printToConsole(MyArrayListSlow *tmp);
+	static void printToConsole(MyArrayList* tmp);
 
-	~MyArrayListSlow();
+	~MyArrayList();
 
 private:
 	int size;
-	int *array;
+	int lenght;
+	int* array;
 };

@@ -22,7 +22,7 @@ void MyArrayListSlow::pushBack(int val)
 		array[i] = tmp[i];
 	}
 	delete[] tmp;
-	array[size-1];
+	array[size] = val;
 	size++;
 }
 
@@ -42,12 +42,13 @@ void MyArrayListSlow::pushFront(int val)
 		array[i + 1] = tmp[i];
 	}
 	delete[] tmp;
-	array[0];
+	array[0] = val;
 	size++;
 }
 
 void MyArrayListSlow::addIn(int number, int val)
 {
+	if (number > size) { return; }
 	if (array == NULL)
 	{
 		size++;
@@ -55,7 +56,6 @@ void MyArrayListSlow::addIn(int number, int val)
 		array[0] = val;
 		return;
 	}
-	if (number > size) { return; }
 	if (number == 0) { pushFront(val); return; }
 	if (number == 0) { pushFront(val); return; }
 	int* tmp = array;
@@ -84,7 +84,7 @@ int MyArrayListSlow::getIndex(int val)
 
 int MyArrayListSlow::popBack()
 {
-	if (array == NULL) { return -1; }
+	if (array == NULL || size == 0) { return -1; }
 	size--;
 	int tmp_val = array[size];
 	int* tmp = array;
@@ -99,7 +99,7 @@ int MyArrayListSlow::popBack()
 
 int MyArrayListSlow::popFront()
 {
-	if (array == NULL) { return -1; }
+	if (array == NULL || size == 0) { return -1; }
 	size--;
 	int tmp_val = array[0];
 	int* tmp = array;
@@ -114,7 +114,7 @@ int MyArrayListSlow::popFront()
 
 int MyArrayListSlow::del(int index)
 {
-	if (array == NULL) { return -1; }
+	if (array == NULL || size == 0) { return -1; }
 	if (index > size - 1 || index < 0) { return -1; }
 	if (index == 0) { popFront(); }
 	if (index == size - 1) { popBack(); }
@@ -132,6 +132,15 @@ int MyArrayListSlow::del(int index)
 	int tmp_val = tmp[index];
 	delete[] tmp;
 	return 0;
+}
+
+void MyArrayListSlow::printToConsole(MyArrayListSlow* tmp)
+{
+	if (tmp == NULL) { return; }
+	for (int i = 0; i < tmp->size; i++)
+	{
+		std::cout << tmp->array[i] << std::endl;
+	}
 }
 
 MyArrayListSlow::~MyArrayListSlow()

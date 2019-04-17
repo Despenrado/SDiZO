@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="MyArrayList.h" />
     <ClInclude Include="MyArrayListSlow.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>

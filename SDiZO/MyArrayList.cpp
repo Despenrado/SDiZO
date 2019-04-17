@@ -1,3 +1,4 @@
+#include "MyArrayList.h"
 #include "pch.h"
 #include "MyArrayList.h"
 
@@ -55,4 +56,8 @@ void MyArrayList::pushFront(int val)
 	}
 	array[0] = val;
 	lenght++;
+}
+
+void MyArrayList::addIn(int number, int val)
+{
 }

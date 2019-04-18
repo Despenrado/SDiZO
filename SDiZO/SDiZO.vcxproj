@@ -151,11 +151,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="MyLinkedList.h" />
     <ClInclude Include="MyArrayList.h" />
     <ClInclude Include="MyArrayListSlow.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MyLinkedList.cpp" />
     <ClCompile Include="MyArrayList.cpp" />
     <ClCompile Include="MyArrayListSlow.cpp" />
     <ClCompile Include="pch.cpp">

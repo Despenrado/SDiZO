@@ -5,10 +5,10 @@
 #include <iostream>
 #include "MyArrayListSlow.h"
 #include "MyArrayList.h"
+#include "MyLinkedList.h"
 
 int main()
 {
-
 
 	return 0;
 }

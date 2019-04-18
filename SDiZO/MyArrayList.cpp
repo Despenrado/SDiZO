@@ -1,4 +1,3 @@
-#include "MyArrayList.h"
 #include "pch.h"
 #include "MyArrayList.h"
 
@@ -18,6 +17,7 @@ void MyArrayList::pushBack(int val)
 		length++;
 		return;
 	}
+
 	if (length == size)
 	{
 		int* tmp = array;
@@ -43,12 +43,14 @@ void MyArrayList::pushFront(int val)
 		length++;
 		return;
 	}
+
 	int* tmp = array;
 	if (length == size)
 	{
 		size = size * 2;
 		array = new int[size];
 	}
+
 	for (int i = length - 1; i >= 0; i--)
 	{
 		array[i + 1] = tmp[i];
@@ -70,6 +72,7 @@ void MyArrayList::addIn(int number, int val)
 		length++;
 		return;
 	}
+
 	int* tmp = array;
 	if (length == size)
 	{
@@ -80,6 +83,7 @@ void MyArrayList::addIn(int number, int val)
 			array[i] = tmp[i];
 		}
 	}
+
 	for (int i = length - 1; i >= number; i--)
 	{
 		array[i + 1] = tmp[i];
@@ -107,6 +111,7 @@ int MyArrayList::popBack()
 int MyArrayList::popFront()
 {
 	if (length == 0 || array == NULL) { return -1; }
+
 	int tmp = array[0];
 	int* tmp_arr = array;
 	length--;
@@ -125,6 +130,7 @@ int MyArrayList::del(int index)
 	if (index > length - 1 || index < 0) { return -1; }
 	if (index == 0) { return popFront(); }
 	if (index == size - 1) { return popBack(); }
+
 	int* tmp = array;
 	for (int i = index + 1; i < length; i++)
 	{
@@ -138,12 +144,14 @@ int MyArrayList::del(int index)
 int* MyArrayList::get(int index)
 {
 	if (index > 0 || index < size) { return NULL; }
+
 	return (array + index);
-}
+} 
 
 void MyArrayList::printToConsole(MyArrayList* tmp)
 {
 	if (tmp == NULL) { return; }
+
 	for (int i = 0; i < tmp->length; i++)
 	{
 		std::cout << tmp->array[i] << std::endl;

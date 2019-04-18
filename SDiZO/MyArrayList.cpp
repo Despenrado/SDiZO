@@ -43,16 +43,15 @@ void MyArrayList::pushFront(int val)
 		length++;
 		return;
 	}
+	int* tmp = array;
 	if (length == size)
 	{
-		int* tmp = array;
 		size = size * 2;
 		array = new int[size];
-		for (int i = 0; i < length; i++)
-		{
-			array[i] = tmp[i];
-		}
-		delete[] tmp;
+	}
+	for (int i = length - 1; i >= 0; i--)
+	{
+		array[i + 1] = tmp[i];
 	}
 	array[0] = val;
 	length++;
@@ -74,20 +73,19 @@ void MyArrayList::addIn(int number, int val)
 	int* tmp = array;
 	if (length == size)
 	{
-		int* tmp = array;
 		size = size * 2;
 		array = new int[size];
 		for (int i = 0; i < number; i++)
 		{
 			array[i] = tmp[i];
 		}
-		array[number] = val;
-		for (int i = number + 1; i < length; i++)
-		{
-			array[i] = tmp[i - 1];
-		}
-		delete[] tmp;
 	}
+	for (int i = length - 1; i >= number; i--)
+	{
+		array[i + 1] = tmp[i];
+	}
+	array[number] = val;
+	length++;
 }
 
 int MyArrayList::getIndex(int val)
@@ -124,7 +122,7 @@ int MyArrayList::popFront()
 int MyArrayList::del(int index)
 {
 	if (array == NULL || length == 0) { return -1; }
-	if (index > size - 1 || index < 0) { return -1; }
+	if (index > length - 1 || index < 0) { return -1; }
 	if (index == 0) { return popFront(); }
 	if (index == size - 1) { return popBack(); }
 	int* tmp = array;
@@ -133,7 +131,6 @@ int MyArrayList::del(int index)
 		array[i - 1] = tmp[i];
 	}
 	int tmp_val = tmp[index];
-	delete[] tmp;
 	length--;
 	return tmp_val;
 }

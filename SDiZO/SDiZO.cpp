@@ -4,10 +4,11 @@
 #include "pch.h"
 #include <iostream>
 #include "MyArrayListSlow.h"
+#include "MyArrayList.h"
 
 int main()
 {
-	
+
 
 	return 0;
 }

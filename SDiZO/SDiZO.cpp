@@ -3,12 +3,35 @@
 
 #include "pch.h"
 #include <iostream>
+#include <time.h>
 #include "MyArrayListSlow.h"
 #include "MyArrayList.h"
 #include "MyLinkedList.h"
+#include "MyHeap.h"
 
 int main()
 {
+	srand(time(0));
+	MyHeap* myHeap = new MyHeap();
+	for (int i = 0; i < 12; i++)
+	{
+		myHeap->add(rand());
+	}
+	MyHeap::printToConsole(myHeap);
+
+	std::cout << std::endl;
+	myHeap->del(0);
+	myHeap->del(5);
+	MyHeap::printToConsole(myHeap);
+	std::cout << std::endl;
+	myHeap->del(5);
+	MyHeap::printToConsole(myHeap);
+	std::cout << std::endl;
+	myHeap->del(5);
+	MyHeap::printToConsole(myHeap);
+	myHeap->del(2);
+	std::cout << std::endl;
+	MyHeap::printToConsole(myHeap);
 
 	return 0;
 }

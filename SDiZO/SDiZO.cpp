@@ -8,30 +8,31 @@
 #include "MyArrayList.h"
 #include "MyLinkedList.h"
 #include "MyHeap.h"
+#include "MyRedBlackTree.h"
 
 int main()
 {
-	srand(time(0));
-	MyHeap* myHeap = new MyHeap();
-	for (int i = 0; i < 12; i++)
+	//srand(time(0));
+	MyRedBlackTreee* myHeap = new MyRedBlackTreee();
+	for (int i = 0; i < 1000000; i++)
 	{
 		myHeap->add(rand());
 	}
-	MyHeap::printToConsole(myHeap);
+	myHeap->printToConsole(myHeap);
 
-	std::cout << std::endl;
+	/*std::cout << std::endl;
 	myHeap->del(0);
 	myHeap->del(5);
-	MyHeap::printToConsole(myHeap);
+
 	std::cout << std::endl;
 	myHeap->del(5);
-	MyHeap::printToConsole(myHeap);
+
 	std::cout << std::endl;
 	myHeap->del(5);
-	MyHeap::printToConsole(myHeap);
+
 	myHeap->del(2);
-	std::cout << std::endl;
-	MyHeap::printToConsole(myHeap);
+	std::cout << std::endl;*/
+
 
 	return 0;
 }

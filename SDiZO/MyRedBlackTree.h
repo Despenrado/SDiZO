@@ -19,7 +19,7 @@ public:
 	RedBlackNode* getNode(int);
 	static void printToConsole(MyRedBlackTreee*);
 	RedBlackNode* preorder(RedBlackNode*);
-	void del(int);
+	void del(RedBlackNode*);
 
 	RedBlackNode* insert(RedBlackNode*, int);
 	void insertCase1(RedBlackNode*);
@@ -28,12 +28,14 @@ public:
 	void insertCase4(RedBlackNode*);
 	void insertCase5(RedBlackNode*);
 
+	RedBlackNode* replace(RedBlackNode*);
 	void deleteCase1(RedBlackNode*);
 	void deleteCase2(RedBlackNode*);
 	void deleteCase3(RedBlackNode*);
 	void deleteCase4(RedBlackNode*);
 	void deleteCase5(RedBlackNode*);
 	void deleteCase6(RedBlackNode*);
+	RedBlackNode* sibling(RedBlackNode*);
 
 	void leftRotation(RedBlackNode*);
 	void rightRotation(RedBlackNode*);

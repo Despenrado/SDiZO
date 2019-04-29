@@ -11,9 +11,7 @@ public:
 	int getLength();
 	static void printToConsole(MyHeap*);
 	void del(int);
-	void correctionDown(int);
-	void correctHeap();
-	void correctionAdd();
+	
 
 	~MyHeap();
 
@@ -21,4 +19,8 @@ private:
 	int* array;
 	int size;
 	int length;
+
+	void correctionDown(int);
+	void correctHeap();
+	void correctionAdd();
 };

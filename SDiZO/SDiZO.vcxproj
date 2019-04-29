@@ -156,7 +156,9 @@
     <ClInclude Include="MyArrayList.h" />
     <ClInclude Include="MyArrayListSlow.h" />
     <ClInclude Include="MyRedBlackTree.h" />
+    <ClInclude Include="My_Environment.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyHeap.cpp" />
@@ -171,6 +173,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="SDiZO.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

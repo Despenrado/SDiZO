@@ -1,13 +1,13 @@
 ﻿#include "pch.h"
 #include "MyRedBlackTree.h"
 
-MyRedBlackTreee::MyRedBlackTreee()
+MyRedBlackTree::MyRedBlackTree()
 {
 	stage = 0;
 	size = 0;
 }
 
-void MyRedBlackTreee::add(int val)
+void MyRedBlackTree::add(int val)
 {
 	RedBlackNode* newNode = new RedBlackNode();
 	newNode->val = val;
@@ -37,12 +37,12 @@ void MyRedBlackTreee::add(int val)
 	size++;
 }
 
-int MyRedBlackTreee::getSize()
+int MyRedBlackTree::getSize()
 {
 	return size;
 }
 
-RedBlackNode* MyRedBlackTreee::getNode(int val)
+RedBlackNode* MyRedBlackTree::getNode(int val)
 {
 	RedBlackNode* tmp = root;
 	while (tmp != NULL)
@@ -63,12 +63,17 @@ RedBlackNode* MyRedBlackTreee::getNode(int val)
 	return NULL;
 }
 
-void MyRedBlackTreee::printToConsole(MyRedBlackTreee* tmp)
+RedBlackNode* MyRedBlackTree::getRoot()
+{
+	return root;
+}
+
+void MyRedBlackTree::printToConsole(MyRedBlackTree* tmp)
 {
 	tmp->preorder(tmp->root);
 }
 
-RedBlackNode* MyRedBlackTreee::preorder(RedBlackNode* tmp)
+RedBlackNode* MyRedBlackTree::preorder(RedBlackNode* tmp)
 {
 	if (tmp == NULL) { return NULL; }
 	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -83,17 +88,27 @@ RedBlackNode* MyRedBlackTreee::preorder(RedBlackNode* tmp)
 	preorder(tmp->right);
 }
 
-void MyRedBlackTreee::del(RedBlackNode* rm)
+void MyRedBlackTree::del(RedBlackNode* rm)
 {
-	size--;
 	if (rm == NULL) { return; }
 	rm = replace(rm);
 	if (rm->color == false)
 	{
-		deleteCase1(rm);
+		if (rm->right == NULL)
+		{
+			deleteCase1(rm);
+		}
 	}
 	if (rm != root) {
-		rm->prev->left = NULL;
+		if (rm->right == NULL)
+		{
+			rm->prev->left = NULL;
+		}
+		else
+		{
+			rm->val = rm->right->val;
+			rm->right = NULL;
+		}
 	}
 	else
 	{
@@ -101,11 +116,17 @@ void MyRedBlackTreee::del(RedBlackNode* rm)
 	}
 	rm = NULL;
 	delete rm;
-	
-
+	size--;
 }
 
-void MyRedBlackTreee::leftRotation(RedBlackNode* n)
+MyRedBlackTree::~MyRedBlackTree()
+{
+	delete root;
+	size = 0;
+	stage = 0;
+}
+
+void MyRedBlackTree::leftRotation(RedBlackNode* n)
 {
 	RedBlackNode* tmp = n->right;
 
@@ -134,7 +155,7 @@ void MyRedBlackTreee::leftRotation(RedBlackNode* n)
 	tmp->left = n;
 }
 
-void MyRedBlackTreee::rightRotation(RedBlackNode* n)
+void MyRedBlackTree::rightRotation(RedBlackNode* n)
 {
 	RedBlackNode* tmp = n->left;
 
@@ -163,7 +184,7 @@ void MyRedBlackTreee::rightRotation(RedBlackNode* n)
 	tmp->right = n;
 }
 
-RedBlackNode* MyRedBlackTreee::insert(RedBlackNode* tmp, int val)
+RedBlackNode* MyRedBlackTree::insert(RedBlackNode* tmp, int val)
 {
 	if (tmp == NULL)
 	{
@@ -184,7 +205,7 @@ RedBlackNode* MyRedBlackTreee::insert(RedBlackNode* tmp, int val)
 	return insert(tmp->right, val);
 }
 
-void MyRedBlackTreee::insertCase1(RedBlackNode* tmp)
+void MyRedBlackTree::insertCase1(RedBlackNode* tmp)
 {
 	if (tmp->prev == NULL)
 	{
@@ -194,7 +215,7 @@ void MyRedBlackTreee::insertCase1(RedBlackNode* tmp)
 	insertCase2(tmp);
 }
 
-void MyRedBlackTreee::insertCase2(RedBlackNode* tmp)
+void MyRedBlackTree::insertCase2(RedBlackNode* tmp)
 {
 	if (tmp->prev->color == false)
 	{
@@ -203,7 +224,7 @@ void MyRedBlackTreee::insertCase2(RedBlackNode* tmp)
 	insertCase3(tmp);
 }
 
-void MyRedBlackTreee::insertCase3(RedBlackNode* tmp)
+void MyRedBlackTree::insertCase3(RedBlackNode* tmp)
 {
 	RedBlackNode* utmp;
 	RedBlackNode* gptmp;
@@ -241,7 +262,7 @@ void MyRedBlackTreee::insertCase3(RedBlackNode* tmp)
 	}
 }
 
-void MyRedBlackTreee::insertCase4(RedBlackNode* tmp)
+void MyRedBlackTree::insertCase4(RedBlackNode* tmp)
 {
 	RedBlackNode* gptmp;
 	if(tmp != NULL && tmp->prev != NULL)
@@ -269,7 +290,7 @@ void MyRedBlackTreee::insertCase4(RedBlackNode* tmp)
 	insertCase5(tmp);
 }
 
-void MyRedBlackTreee::insertCase5(RedBlackNode* tmp)
+void MyRedBlackTree::insertCase5(RedBlackNode* tmp)
 {
 	RedBlackNode* gptmp;
 	if (tmp != NULL && tmp->prev != NULL)
@@ -291,7 +312,7 @@ void MyRedBlackTreee::insertCase5(RedBlackNode* tmp)
 	}
 }
 
-RedBlackNode* MyRedBlackTreee::replace(RedBlackNode* tmp_root)
+RedBlackNode* MyRedBlackTree::replace(RedBlackNode* tmp_root)
 {
 	RedBlackNode* tmp = tmp_root;
 	if (tmp_root->right != NULL)
@@ -306,24 +327,15 @@ RedBlackNode* MyRedBlackTreee::replace(RedBlackNode* tmp_root)
 	return tmp;
 }
 
-void MyRedBlackTreee::deleteCase1(RedBlackNode* tmp)
+void MyRedBlackTree::deleteCase1(RedBlackNode* tmp)
 {
-	if (tmp->right != NULL)
-	{
-		tmp->val = tmp->right->val;
-		tmp->right->prev = NULL;
-		tmp->right = NULL;
-	}
-	else
-	{
 		if (tmp->prev != NULL)
 		{
 			deleteCase2(tmp);
 		}
-	}
 }
 
-void MyRedBlackTreee::deleteCase2(RedBlackNode* tmp)
+void MyRedBlackTree::deleteCase2(RedBlackNode* tmp)
 {
 	RedBlackNode* brother = sibling(tmp);
 	if (brother->color == true) {
@@ -337,7 +349,7 @@ void MyRedBlackTreee::deleteCase2(RedBlackNode* tmp)
 	deleteCase3(tmp);
 }
 
-void MyRedBlackTreee::deleteCase3(RedBlackNode* n)
+void MyRedBlackTree::deleteCase3(RedBlackNode* n)
 {
 	RedBlackNode* s = sibling(n);
 
@@ -350,12 +362,12 @@ void MyRedBlackTreee::deleteCase3(RedBlackNode* n)
 		deleteCase4(n);
 }
 
-void MyRedBlackTreee::deleteCase4(RedBlackNode* n)
+void MyRedBlackTree::deleteCase4(RedBlackNode* n)
 {
 	RedBlackNode* s = sibling(n);
 
-	if ((n->prev->color == true) && (s->color == false) &&
-		(s->left->color == false) && (s->right->color == false)) {
+	if ((n->prev->color == true) && (s->color == false) && ((s->left == NULL || (s->left->color == false)) &&
+		(s->right == NULL ||(s->right->color == false)))) {
 		s->color = true;
 		n->prev->color = false;
 	}
@@ -363,7 +375,7 @@ void MyRedBlackTreee::deleteCase4(RedBlackNode* n)
 		deleteCase5(n);
 }
 
-void MyRedBlackTreee::deleteCase5(RedBlackNode* n)
+void MyRedBlackTree::deleteCase5(RedBlackNode* n)
 {
 	RedBlackNode* s = sibling(n);
 
@@ -386,7 +398,7 @@ void MyRedBlackTreee::deleteCase5(RedBlackNode* n)
 	deleteCase6(n);
 }
 
-void MyRedBlackTreee::deleteCase6(RedBlackNode* n)
+void MyRedBlackTree::deleteCase6(RedBlackNode* n)
 {
 	RedBlackNode* s = sibling(n);
 
@@ -403,7 +415,7 @@ void MyRedBlackTreee::deleteCase6(RedBlackNode* n)
 	}
 }
 
-RedBlackNode* MyRedBlackTreee::sibling(RedBlackNode* n)
+RedBlackNode* MyRedBlackTree::sibling(RedBlackNode* n)
 {
 	if (n == n->prev->left)
 		return n->prev->right;

@@ -2,33 +2,22 @@
 //
 
 #include "pch.h"
-#include <iostream>
-#include <time.h>
-#include "MyArrayListSlow.h"
-#include "MyArrayList.h"
-#include "MyLinkedList.h"
-#include "MyHeap.h"
-#include "MyRedBlackTree.h"
+#include "UI.h"
 
 int main()
 {
-	//srand(time(0));
-	MyRedBlackTreee* myHeap = new MyRedBlackTreee();
-	for (int i = 0; i < 1; i++)
-	{
-		myHeap->add(rand());
-	}
-	myHeap->printToConsole(myHeap);
-	std::cout << std::endl << std::endl;
-	myHeap->del(myHeap->getNode(41));
-	myHeap->printToConsole(myHeap);
-
-	for (int i = 0; i < 1; i++)
-	{
-		myHeap->add(rand());
-	}
-	myHeap->printToConsole(myHeap);
-
+	std::cout <<
+		std::endl << "======================================================================================================================" <<
+		std::endl << "======================================================================================================================" <<
+		std::endl << "=========================                      SDiZO      projekt_1                          =========================" <<
+		std::endl << "=========================                      Nikita   Stepanenko                           =========================" <<
+		std::endl << "=========================                      nr.albomu: 245816                             =========================" <<
+		std::endl << "======================================================================================================================" <<
+		std::endl << "======================================================================================================================" <<
+		std::endl << "Program is running" <<
+		std::endl << "help - to help" << std::endl;
+	srand(time(0));
+	UI* ui = new UI();
 	return 0;
 }
 

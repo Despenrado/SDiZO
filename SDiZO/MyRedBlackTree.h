@@ -10,16 +10,24 @@ struct RedBlackNode
 	bool color; //false - black, true - red
 };
 
-class MyRedBlackTreee
+class MyRedBlackTree
 {
 public:
-	MyRedBlackTreee();
+	MyRedBlackTree();
 	void add(int);
 	int getSize();
 	RedBlackNode* getNode(int);
-	static void printToConsole(MyRedBlackTreee*);
+	RedBlackNode* getRoot();
+	static void printToConsole(MyRedBlackTree*);
 	RedBlackNode* preorder(RedBlackNode*);
 	void del(RedBlackNode*);
+
+	~MyRedBlackTree();
+
+private:
+	RedBlackNode* root;
+	int stage;
+	int size;
 
 	RedBlackNode* insert(RedBlackNode*, int);
 	void insertCase1(RedBlackNode*);
@@ -40,12 +48,4 @@ public:
 	void leftRotation(RedBlackNode*);
 	void rightRotation(RedBlackNode*);
 	RedBlackNode* getSub(RedBlackNode*);
-
-
-	~MyRedBlackTreee();
-
-private:
-	RedBlackNode* root;
-	int stage;
-	int size;
 };

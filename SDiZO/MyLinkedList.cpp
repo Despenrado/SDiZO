@@ -200,10 +200,43 @@ void MyLinkedList::printToConsole(MyLinkedList* list)
 	Node* tmp = list->head;
 	while (tmp != NULL)
 	{
-		std::cout << tmp->data << " ";
+		std::cout << tmp->data << std::endl;
 		tmp = tmp->next;
 	}
 	std::cout << std::endl;
+}
+
+void MyLinkedList::printToFile(MyLinkedList* tmp, std::string fileName)
+{
+	std::cout << "|                                      PrintToFile LinkedList...                                   |" << std::endl;
+	std::ofstream fout;
+	fout.open(fileName);
+	if (fout.is_open())
+	{
+		Node* node = tmp->head;
+		for (int i = 0; node->next != NULL; i++)
+		{
+			fout << node->data << std::endl;
+			node = node->next;
+			if (tmp->getLength() >= 100)
+			{
+				if (i % (tmp->getLength() / 100) == 0)
+				{
+					std::cout << "#";
+				}
+			}
+			else
+			{
+				std::cout << "#";
+			}
+		}
+	}
+	else
+	{
+		std::cout << "ERROR at print to file" << std::endl;
+	}
+	fout.close();
+	std::cout << std::endl << "successful" << std::endl;
 }
 
 MyLinkedList::~MyLinkedList()

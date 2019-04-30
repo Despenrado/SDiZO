@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 struct Node
 {
@@ -22,6 +23,7 @@ public:
 	Node* popFront();
 	Node* del(int index);
 	static void printToConsole(MyLinkedList *tmp);
+	static void printToFile(MyLinkedList* tmp, std::string);
 
 	~MyLinkedList();
 

@@ -134,10 +134,10 @@ int MyArrayListSlow::del(int index)
 	return tmp_val;
 }
 
-int* MyArrayListSlow::get(int index)
+int MyArrayListSlow::get(int index)
 {
-	if (index > 0 || index < size) { return NULL; }
-	return (array + index);
+	if (index < 0 || index >= size) { return NULL; }
+	return array[index];
 }
 
 void MyArrayListSlow::printToConsole(MyArrayListSlow* tmp)
@@ -147,6 +147,37 @@ void MyArrayListSlow::printToConsole(MyArrayListSlow* tmp)
 	{
 		std::cout << tmp->array[i] << std::endl;
 	}
+}
+
+void MyArrayListSlow::printToFile(MyArrayListSlow* tmp, std::string fileName)
+{
+	std::cout << "|                                      PrintToFile ArrayListSlow...                                |" << std::endl;
+	std::ofstream fout;
+	fout.open(fileName);
+	if (fout.is_open())
+	{
+		for (int i = 0; i < tmp->getSize(); i++)
+		{
+			fout << tmp->array[i] << std::endl;
+			if (tmp->getSize() >= 100)
+			{
+				if (i % (tmp->getSize() / 100) == 0)
+				{
+					std::cout << "#";
+				}
+			}
+			else
+			{
+				std::cout << "#";
+			}
+		}
+	}
+	else
+	{
+		std::cout << "ERROR at print to file" << std::endl;
+	}
+	fout.close();
+	std::cout << std::endl << "successful" << std::endl;
 }
 
 int MyArrayListSlow::getSize()

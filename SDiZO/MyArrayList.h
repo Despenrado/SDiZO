@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 class MyArrayList
 {
@@ -12,10 +13,11 @@ public:
 	int popBack();
 	int popFront();
 	int del(int index);
-	int* get(int index);
+	int get(int index);
 	static void printToConsole(MyArrayList* tmp);
 	int getLength();
 	int getSize();
+	static void printToFile(MyArrayList* tmp, std::string);
 
 	~MyArrayList();
 

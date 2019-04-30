@@ -43,6 +43,12 @@ int MyHeap::getIndex(int val)
 	return -1;
 }
 
+int MyHeap::get(int index)
+{
+	if (index < 0 || index >= length) { return -1; }
+	return array[index];
+}
+
 int MyHeap::getSize()
 {
 	return size;
@@ -73,6 +79,52 @@ void MyHeap::printToConsole(MyHeap *tmp)
 	}
 }
 
+void MyHeap::printToFile(MyHeap* tmp, std::string fileName)
+{
+	std::cout << "|                                      PrintToFile HyHeap...                                       |" << std::endl;
+	std::ofstream fout, fout2;
+	fout.open(fileName);
+	fout2.open("img_"+fileName);
+	int degree = 1;
+	if (fout.is_open() && fout2.is_open())
+	{
+		for (int i = 0; i < tmp->getLength(); i++)
+		{
+			fout << tmp->get(i) << std::endl;
+			fout2 << tmp->array[i] << " ";
+			if (i % 2 == 0) {
+				fout2 << "| ";
+			}
+			if (i + 2 == pow(2, degree))
+			{
+				degree++;
+				if (i != 1)
+				{
+					fout2 << std::endl;
+				}
+			}
+			if (tmp->getLength() >= 100)
+			{
+				if (i % (tmp->getLength() / 100) == 0)
+				{
+					std::cout << "#";
+				}
+			}
+			else
+			{
+				std::cout << "#";
+			}
+		}
+	}
+	else
+	{
+		std::cout << "ERROR at print to file" << std::endl;
+	}
+	fout.close();
+	fout2.close();
+	std::cout << std::endl << "successful" << std::endl;
+}
+
 void MyHeap::del(int index)
 {
 	if (index < 0 || index >= length) { return; }
@@ -85,24 +137,27 @@ void MyHeap::del(int index)
 void MyHeap::correctionDown(int index)
 {
 	if (index >= length) { return; }
-	if (array[(index * 2) + 1] > array[(index * 2) + 2])
+	if (index * 2 + 2 < length)
 	{
-		if (array[index] < array[(index * 2) + 1])
+		if (array[(index * 2) + 1] > array[(index * 2) + 2])
 		{
-			int tmp = array[index];
-			array[index] = array[(index * 2) + 1];
-			array[(index * 2) + 1] = tmp;
-			correctionDown((index * 2) + 1);
+			if (array[index] < array[(index * 2) + 1])
+			{
+				int tmp = array[index];
+				array[index] = array[(index * 2) + 1];
+				array[(index * 2) + 1] = tmp;
+				correctionDown((index * 2) + 1);
+			}
 		}
-	}
-	else
-	{
-		if (array[index] < array[(index * 2) + 2])
+		else
 		{
-			int tmp = array[index];
-			array[index] = array[(index * 2) + 2];
-			array[(index * 2) + 2] = tmp;
-			correctionDown((index * 2) + 2);
+			if (array[index] < array[(index * 2) + 2])
+			{
+				int tmp = array[index];
+				array[index] = array[(index * 2) + 2];
+				array[(index * 2) + 2] = tmp;
+				correctionDown((index * 2) + 2);
+			}
 		}
 	}
 }

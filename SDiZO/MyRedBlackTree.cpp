@@ -82,8 +82,9 @@ RedBlackNode* MyRedBlackTree::preorder(RedBlackNode* tmp)
 	{
 		SetConsoleTextAttribute(hStdOut, 4);
 	}
-
-	std::cout << tmp->val << "  ";
+	std::cout << tmp->val << std::endl;
+	hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hStdOut, 15);
 	preorder(tmp->left);
 	preorder(tmp->right);
 }
@@ -118,6 +119,18 @@ void MyRedBlackTree::del(RedBlackNode* rm)
 	delete rm;
 	size--;
 }
+
+void MyRedBlackTree::printToFile(RedBlackNode* tmp, std::string fileName)
+{
+	if (tmp == NULL) { return; }
+	std::ofstream fout;
+	fout.open(fileName, std::ofstream::app);
+	fout << tmp->val << std::endl;
+	fout.close();
+	printToFile(tmp->left, fileName);
+	printToFile(tmp->right, fileName);
+}
+
 
 MyRedBlackTree::~MyRedBlackTree()
 {

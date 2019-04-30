@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <Windows.h>
 
 struct RedBlackNode
@@ -21,6 +22,9 @@ public:
 	static void printToConsole(MyRedBlackTree*);
 	RedBlackNode* preorder(RedBlackNode*);
 	void del(RedBlackNode*);
+	static void printToFile(RedBlackNode*, std::string);
+
+
 
 	~MyRedBlackTree();
 

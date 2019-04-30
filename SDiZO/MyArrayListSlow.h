@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 
 class MyArrayListSlow
@@ -13,8 +14,9 @@ public:
 	int popBack();
 	int popFront();
 	int del(int index);
-	int* get(int index);
+	int get(int index);
 	static void printToConsole(MyArrayListSlow *tmp);
+	static void printToFile(MyArrayListSlow* tmp, std::string);
 	int getSize();
 
 	~MyArrayListSlow();

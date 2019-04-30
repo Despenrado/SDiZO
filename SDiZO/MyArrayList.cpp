@@ -141,11 +141,11 @@ int MyArrayList::del(int index)
 	return tmp_val;
 }
 
-int* MyArrayList::get(int index)
+int MyArrayList::get(int index)
 {
-	if (index > 0 || index < size) { return NULL; }
+	if (index < 0 || index >= length) { return NULL; }
 
-	return (array + index);
+	return array[index];
 } 
 
 void MyArrayList::printToConsole(MyArrayList* tmp)
@@ -166,6 +166,37 @@ int MyArrayList::getLength()
 int MyArrayList::getSize()
 {
 	return size;
+}
+
+void MyArrayList::printToFile(MyArrayList* tmp, std::string fileName)
+{
+	std::cout << "|                                      PrintToFile ArrayList...                                    |" << std::endl;
+	std::ofstream fout;
+	fout.open(fileName);
+	if (fout.is_open())
+	{
+		for (int i = 0; i < tmp->getLength(); i++)
+		{
+			fout << tmp->array[i] << std::endl;
+			if (tmp->getLength() >= 100)
+			{
+				if (i % (tmp->getLength() / 100) == 0)
+				{
+					std::cout << "#";
+				}
+			}
+			else
+			{
+				std::cout << "#";
+			}
+		}
+	}
+	else
+	{
+		std::cout << "ERROR at print to file" << std::endl;
+	}
+	fout.close();
+	std::cout << std::endl << "successful" << std::endl;
 }
 
 MyArrayList::~MyArrayList()

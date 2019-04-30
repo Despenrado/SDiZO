@@ -158,6 +158,7 @@
     <ClInclude Include="MyRedBlackTree.h" />
     <ClInclude Include="My_Environment.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="TimeCheck.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +174,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="SDiZO.cpp" />
+    <ClCompile Include="TimeCheck.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

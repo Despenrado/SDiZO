@@ -9,7 +9,7 @@
 - Heap (Kopiec)
 - Red-black tree (dzewo czerwono-czarne)
 
-[link to documentation (SDIZO_1/sprawko.pdf)]("https://github.com/Despenrado/SDiZO/tree/main/SDIZO_1/sprawko.pdf")
+[link to documentation (SDIZO_1/sprawko.pdf)](https://github.com/Despenrado/SDiZO/tree/main/SDIZO_1/sprawko.pdf)
 
 ## SZiZO_2
 
@@ -24,4 +24,4 @@
 - Bellman–Ford algorithm (Algorytm Bellmana-Forda)
 - Prim's algorithm (Algorytm Prima)
 
-[link to documentation (SDIZO_2/sprawk.pdf)]("https://github.com/Despenrado/SDiZO/tree/main/SDIZO_2/sprawk.pdf")
+[link to documentation (SDIZO_2/sprawk.pdf)](https://github.com/Despenrado/SDiZO/tree/main/SDIZO_2/sprawk.pdf)
